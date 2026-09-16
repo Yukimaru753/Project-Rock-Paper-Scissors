@@ -75,7 +75,7 @@
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 
-// じゃんけんの勝者を返す関数 getRoundWinner
+// スコアを更新し、じゃんけんの勝者を返す関数 getRoundWinner
 
 // プレイヤーから得た数値とコンピュータから得た数値を比べる
 // SWITCH
@@ -141,7 +141,6 @@ let playerScore = 0;
 let computerScore = 0;
 let playerChoice = 0;
 let computerChoice = 0;
-let drawCheck = true;
 
 function getComputerChoice(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -199,44 +198,44 @@ function showEachHand(playerChoice, computerChoice) {
 }
 
 function showRoundWinner(playerChoice, computerChoice) {
-    let winner;
-    switch (playerChoice + computerChoice) {
-      case 1:
-        if (playerChoice === 0) {
-          playerScore += 1;
-          winner = "あなた";
-          return winner;
-        } else {
-          computerScore += 1;
-          winner = "コンピュータ";
-          return winner;
-        }
-        break;
-      case 2:
-        if (playerChoice === 2) {
-          playerScore += 1;
-          winner = "あなた";
-          return winner;
-        } else {
-          computerScore += 1;
-          winner = "コンピュータ";
-          return winner;
-        }
-        break;
-      case 3:
-        if (playerChoice === 1) {
-          playerScore += 1;
-          winner = "あなた";
-          return winner;
-        } else {
-          computerScore += 1;
-          winner = "コンピュータ";
-          return winner;
-        }
-        break;
-      default:
-        console.log("エラー");
-    }
+  let winner;
+  switch (playerChoice + computerChoice) {
+    case 1:
+      if (playerChoice === 0) {
+        playerScore += 1;
+        winner = "あなた";
+        return winner;
+      } else {
+        computerScore += 1;
+        winner = "コンピュータ";
+        return winner;
+      }
+      break;
+    case 2:
+      if (playerChoice === 2) {
+        playerScore += 1;
+        winner = "あなた";
+        return winner;
+      } else {
+        computerScore += 1;
+        winner = "コンピュータ";
+        return winner;
+      }
+      break;
+    case 3:
+      if (playerChoice === 1) {
+        playerScore += 1;
+        winner = "あなた";
+        return winner;
+      } else {
+        computerScore += 1;
+        winner = "コンピュータ";
+        return winner;
+      }
+      break;
+    default:
+      console.log("エラー");
+  }
 }
 
 function getGameWinner(playerScore, computerScore) {
@@ -247,9 +246,10 @@ function getGameWinner(playerScore, computerScore) {
 console.log("じゃんけんを開始します。");
 
 while (round < 5) {
+  let battleText = "ぽんっ！"; //じゃんけんの掛け声、あいこになると変化する
+  let drawCheck = true; //あいこならtrue,あいこじゃないならfalse
   console.log(`ラウンド${round + 1}`);
   console.log("最初はグー、じゃんけん...");
-  battleText = "ぽんっ！"
   //あいこならtrueで繰り返す。あいこでないなら勝敗判定へ
   while (drawCheck) {
     computerChoice = getComputerChoice(0, 2); //コンピュータの手を選択
@@ -257,12 +257,17 @@ while (round < 5) {
     console.log(battleText);
     showEachHand(playerChoice, computerChoice); //プレイヤーとコンピュータの手を表示
     if (playerChoice === computerChoice) {
-        battleText = "しょっ！"
-    console.log("あいこで...");
-  } else {
-    break;
+      battleText = "しょっ！";
+      console.log("あいこで...");
+    } else {
+      drawCheck = false;
+    }
   }
-  showRoundWinner(playerChoice, computerChoice); //じゃんけんの勝者を表示する
 
+  console.log(`「${showRoundWinner(playerChoice, computerChoice)}」の勝利！`); //じゃんけんの勝者を表示し、スコアを更新
+  console.log(`現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`);
   round++;
 }
+
+console.log("結果発表！");
+console.log(`${playerScore} 対 ${computerScore} で 勝者 → 「${getGameWinner(playerScore, computerScore)}」`);
