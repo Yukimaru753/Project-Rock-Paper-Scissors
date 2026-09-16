@@ -148,8 +148,7 @@ function getComputerChoice(min, max) {
 
 function getPlayerChoice() {
   let playerInput = prompt(
-    "あなたの手を入力してください/n rock, scissors, paper",
-    "入力されていません",
+    "あなたの手を入力してください\n rock, scissors, paper",
   );
   switch (playerInput.toLowerCase()) {
     case "rock":
@@ -265,9 +264,13 @@ while (round < 5) {
   }
 
   console.log(`「${showRoundWinner(playerChoice, computerChoice)}」の勝利！`); //じゃんけんの勝者を表示し、スコアを更新
-  console.log(`現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`);
+  console.log(
+    `現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`,
+  );
   round++;
 }
 
 console.log("結果発表！");
-console.log(`${playerScore} 対 ${computerScore} で 勝者 → 「${getGameWinner(playerScore, computerScore)}」`);
+console.log(
+  `${playerScore} 対 ${computerScore} で 勝者 → 「${getGameWinner(playerScore, computerScore)}」`,
+);
