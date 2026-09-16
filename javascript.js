@@ -10,7 +10,8 @@
 // グー：０、チョキ：１、パー：２とする
 
 // 引数
-// なし
+// 下限の数字min
+// 上限の数字max
 
 // 返り値
 // ０～２のランダムな数字
@@ -83,3 +84,22 @@
 // 返り値
 // 勝者を発表する文字列
 
+let count = 0;
+let playerScore = 0;
+let computerScore = 0;
+
+// ランダムにグー、チョキ、パーを返す関数
+// グー：０、チョキ：１、パー：２とする
+
+// 引数
+// 下限の数字min
+// 上限の数字max
+
+// 返り値
+// ０～２のランダムな数字
+function getComputerChoice(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+// 動作確認
+console.log(getComputerChoice(0,2));
