@@ -5,37 +5,43 @@
 // ラウンドを記録する数字：count
 // プレイヤーの勝利数を記録する数字：playerScore
 // コンピュータの勝利数を記録する数字：computerScore
+// プレイヤーの選択した手を保存する数字：playerChoice
+// コンピュータの選択した手を保存する数字：computerChoice
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
-// ランダムにグー、チョキ、パーを返す関数
+// ランダムにグー、チョキ、パーを返す関数 getComputerChoice
 // グー：０、チョキ：１、パー：２とする
 
-// 引数
+// Parameters
 // 下限の数字min
 // 上限の数字max
 
-// 返り値
+// Return
 // ０～２のランダムな数字
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
-// プレイヤーが出す手を入力する関数
+// プレイヤーが出す手を入力する関数 getPlayerChoice
 
-// プロンプトでRock, scissors, paperのうち一つを入力
-// IF入力に応じて返り値を与える
+// プロンプトでrock, scissors, paperのうち一つを入力
+// SWITCH入力に応じて返り値を与える
 // グー：０
 // チョキ：１
 // パー：２
-// IFEND
+// DEFAULT
+// 無効な入力と表示する
 
-// 引数
+// input
+// プレイヤーの入力した文字列 playerInput
+
+// Parameters
 // なし
 
-// 返り値
+// Return
 // ０～２のランダムな数字
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 // 勝敗を判定する関数
 
 // プレイヤーから得た数値とコンピュータから得た数値を比べる
 // IF
-// 数値が等しい：ドローの表示、もう一度ラウンドの最初から始める
+// 数値が等しい：あいこの表示、もう一度じゃんけんをする
 // ELSE
 // SWITCH
 // 両者の数値の合計でケースを分ける
@@ -57,11 +63,11 @@
 // DEFAULT：エラー表記
 // IFEND
 
-// 引数
+// Parameters
 // プレイヤーから得た数値
 // コンピュータから得た数値
 
-// 返り値
+// Return
 // なし
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 // ラウンドを記録する
@@ -77,29 +83,39 @@
 // 三項演算子でPlayerScoreとcomputerScoreを比べる
 // 勝者の名前を返す
 
-// 引数
+// Parameters
 // playerScore
 // computerScore
 
-// 返り値
+// Return
 // 勝者を発表する文字列
 
 let count = 0;
 let playerScore = 0;
 let computerScore = 0;
+let playerChoice = 0;
+let computerChoice = 0;
 
-// ランダムにグー、チョキ、パーを返す関数
-// グー：０、チョキ：１、パー：２とする
-
-// 引数
-// 下限の数字min
-// 上限の数字max
-
-// 返り値
-// ０～２のランダムな数字
 function getComputerChoice(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-// 動作確認
-console.log(getComputerChoice(0,2));
+function getPlayerChoice() {
+    let playerInput = prompt("あなたの手を入力してください/n rock, scissors, paper","入力されていません");
+    switch (playerInput.toLowerCase()) {
+        case "rock":
+            console.log("グーを選択しました");
+            return 0;
+            break;
+        case "scissors":
+            console.log("チョキを選択しました");
+            return 1;
+            break;
+        case "paper":
+            console.log("パーを選択しました");
+            return 2;
+            break;
+        default:
+            console.log("無効な入力です");
+    }
+}
