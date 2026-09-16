@@ -16,7 +16,7 @@
 // 上限の数字max
 
 // Return
-// ０～２のランダムな数字
+// ０～２のランダムな数字 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 // プレイヤーが出す手を入力する関数 getPlayerChoice
 
@@ -35,9 +35,9 @@
 // なし
 
 // Return
-// ０～２のランダムな数字
+// ０～２のランダムな数字 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
-// 勝敗を判定する関数
+// 勝敗を判定する関数 judgeWinner
 
 // プレイヤーから得た数値とコンピュータから得た数値を比べる
 // IF
@@ -45,26 +45,26 @@
 // ELSE
 // SWITCH
 // 両者の数値の合計でケースを分ける
-// CASE 1：三項演算子でプレイヤーが０を選択したかを判別
-// TRUEならばプレイヤーの勝利
-// playerScoreを１増加させる
-// FOLSEならばコンピュータの勝利
-// computerScoreを１増加させる
-// CASE 2：三項演算子でプレイヤーが２を選択したかを判別
-// TRUEならばプレイヤーの勝利
-// playerScoreを１増加させる
-// FOLSEならばコンピュータの勝利
-// computerScoreを１増加させる
-// CASE 3：三項演算子でプレイヤーが１を選択したかを判別
-// TRUEならばプレイヤーの勝利
-// playerScoreを１増加させる
-// FOLSEならばコンピュータの勝利
-// computerScoreを１増加させる
+// CASE 1：
+// IF
+// プレイヤーが０を選択している：playerScoreを１増加させる
+// プレイヤーが０を選択していない：computerScoreを１増加させる
+// IFEND
+// CASE 2：
+// IF
+// プレイヤーが２を選択している：playerScoreを１増加させる
+// プレイヤーが２を選択していない：computerScoreを１増加させる
+// IFEND
+// CASE 3：
+// IF
+// プレイヤーが１を選択している：playerScoreを１増加させる
+// プレイヤーが１を選択していない：computerScoreを１増加させる
+// IFEND
 // DEFAULT：エラー表記
 // IFEND
 
 // Parameters
-// プレイヤーから得た数値
+// プレイヤーから得た数値 
 // コンピュータから得た数値
 
 // Return
@@ -119,3 +119,79 @@ function getPlayerChoice() {
             console.log("無効な入力です");
     }
 }
+
+// 勝敗を判定する関数 judgeWinner
+
+// プレイヤーから得た数値とコンピュータから得た数値を比べる
+// IF
+// 数値が等しい：あいこの表示、もう一度じゃんけんをする
+// ELSE
+// SWITCH
+// 両者の数値の合計でケースを分ける
+// CASE 1：
+// IF
+// プレイヤーが０を選択している：playerScoreを１増加させる
+// プレイヤーが０を選択していない：computerScoreを１増加させる
+// IFEND
+// CASE 2：
+// IF
+// プレイヤーが２を選択している：playerScoreを１増加させる
+// プレイヤーが２を選択していない：computerScoreを１増加させる
+// IFEND
+// CASE 3：
+// IF
+// プレイヤーが１を選択している：playerScoreを１増加させる
+// プレイヤーが１を選択していない：computerScoreを１増加させる
+// IFEND
+// DEFAULT：エラー表記
+// IFEND
+
+// Parameters
+// プレイヤーから得た数値 
+// コンピュータから得た数値
+
+// Return
+// なし
+
+function judgeWinner(playerChoice, computerChoice) {
+    if(playerChoice === computerChoice) {
+        console.log("あいこです");
+    } else {
+        switch (playerChoice + computerChoice) {
+            case 1:
+                if(playerChoice === 0) {
+                    playerScore += 1;
+                    console.log("あなたの勝利です");
+                } else {
+                    computerScore += 1;
+                    console.log("コンピュータの勝利です");
+                }
+                break;
+            case 2:
+                if(playerChoice === 2) {
+                    playerScore += 1;
+                    console.log("あなたの勝利です");
+                } else {
+                    computerScore += 1;
+                    console.log("コンピュータの勝利です");
+                }
+                break;
+            case 3:
+                if(playerChoice === 1) {
+                    playerScore += 1;
+                    console.log("あなたの勝利です");
+                } else {
+                    computerScore += 1;
+                    console.log("コンピュータの勝利です");
+                }
+                break;
+            default:
+                console.log("エラー");    
+        }
+    }
+}
+
+//動作確認
+playerChoice = 1;
+computerChoice = 0;
+judgeWinner(playerChoice, computerChoice);
