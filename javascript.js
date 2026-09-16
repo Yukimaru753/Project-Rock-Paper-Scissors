@@ -65,7 +65,7 @@
 // コンピュータの選択した手の数値
 
 //Return
-// 自分とコンピュータの出した手の文字列
+//なし
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 
@@ -172,6 +172,29 @@ function getPlayerChoice() {
 function showEachHand(playerChoice, computerChoice) {
   let playerHand;
   let computerHand;
+  switch (playerChoice) {
+    case 0:
+      playerHand = "グー";
+      break;
+    case 1:
+      playerHand = "チョキ";
+      break;
+    case 2:
+      playerHand = "パー";
+      break;
+  }
+  switch (computerChoice) {
+    case 0:
+      computerHand = "グー";
+      break;
+    case 1:
+      computerHand = "チョキ";
+      break;
+    case 2:
+      computerHand = "パー";
+      break;
+  }
+  console.log(`あなた → 「${playerHand}」 コンピュータ → 「${computerHand}」`);
 }
 
 function judgeRoundWinner(playerChoice, computerChoice) {
