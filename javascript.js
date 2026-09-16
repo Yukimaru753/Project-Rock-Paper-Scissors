@@ -75,27 +75,30 @@
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 
-// じゃんけんの勝敗を表示する関数 showRoundWinner
+// じゃんけんの勝者を返す関数 getRoundWinner
 
 // プレイヤーから得た数値とコンピュータから得た数値を比べる
 // SWITCH
 // 両者の数値の合計でケースを分ける
 // CASE 1：
 // IF
-// プレイヤーが０を選択している：playerScoreを１増加させる
-// プレイヤーが０を選択していない：computerScoreを１増加させる
+// プレイヤーが０を選択している：playerScoreを１増加させてプレイヤー名を返す
+// プレイヤーが０を選択していない：computerScoreを１増加させてコンピュータ名を返す
 // IFEND
 // CASE 2：
 // IF
-// プレイヤーが２を選択している：playerScoreを１増加させる
-// プレイヤーが２を選択していない：computerScoreを１増加させる
+// プレイヤーが２を選択している：playerScoreを１増加させてプレイヤー名を返す
+// プレイヤーが２を選択していない：computerScoreを１増加させてコンピュータ名を返す
 // IFEND
 // CASE 3：
 // IF
-// プレイヤーが１を選択している：playerScoreを１増加させる
-// プレイヤーが１を選択していない：computerScoreを１増加させる
+// プレイヤーが１を選択している：playerScoreを１増加させてプレイヤー名を返す
+// プレイヤーが１を選択していない：computerScoreを１増加させてコンピュータ名を返す
 // IFEND
 // DEFAULT：エラー表記
+
+// INPUT
+// 勝者の名前の文字列
 
 // Parameters
 // プレイヤーから得た数値
@@ -196,32 +199,39 @@ function showEachHand(playerChoice, computerChoice) {
 }
 
 function showRoundWinner(playerChoice, computerChoice) {
+    let winner;
     switch (playerChoice + computerChoice) {
       case 1:
         if (playerChoice === 0) {
           playerScore += 1;
-          console.log("あなたの勝利です");
+          winner = "あなた";
+          return winner;
         } else {
           computerScore += 1;
-          console.log("コンピュータの勝利です");
+          winner = "コンピュータ";
+          return winner;
         }
         break;
       case 2:
         if (playerChoice === 2) {
           playerScore += 1;
-          console.log("あなたの勝利です");
+          winner = "あなた";
+          return winner;
         } else {
           computerScore += 1;
-          console.log("コンピュータの勝利です");
+          winner = "コンピュータ";
+          return winner;
         }
         break;
       case 3:
         if (playerChoice === 1) {
           playerScore += 1;
-          console.log("あなたの勝利です");
+          winner = "あなた";
+          return winner;
         } else {
           computerScore += 1;
-          console.log("コンピュータの勝利です");
+          winner = "コンピュータ";
+          return winner;
         }
         break;
       default:
@@ -252,8 +262,7 @@ while (round < 5) {
   } else {
     break;
   }
-
-
+  showRoundWinner(playerChoice, computerChoice); //じゃんけんの勝者を表示する
 
   round++;
 }
