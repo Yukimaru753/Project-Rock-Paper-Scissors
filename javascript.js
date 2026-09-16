@@ -154,15 +154,14 @@ function getPlayerChoice() {
     case "rock":
       console.log("グーを選択しました");
       return 0;
-      break;
     case "scissors":
       console.log("チョキを選択しました");
       return 1;
-      break;
+
     case "paper":
       console.log("パーを選択しました");
       return 2;
-      break;
+
     default:
       console.log("無効な入力です");
   }
@@ -209,7 +208,7 @@ function showRoundWinner(playerChoice, computerChoice) {
         winner = "コンピュータ";
         return winner;
       }
-      break;
+
     case 2:
       if (playerChoice === 2) {
         playerScore += 1;
@@ -220,7 +219,7 @@ function showRoundWinner(playerChoice, computerChoice) {
         winner = "コンピュータ";
         return winner;
       }
-      break;
+
     case 3:
       if (playerChoice === 1) {
         playerScore += 1;
@@ -231,7 +230,7 @@ function showRoundWinner(playerChoice, computerChoice) {
         winner = "コンピュータ";
         return winner;
       }
-      break;
+
     default:
       console.log("エラー");
   }
