@@ -75,7 +75,7 @@
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 
-// じゃんけんの勝敗を判定する関数 judgeRoundWinner
+// じゃんけんの勝敗を表示する関数 showRoundWinner
 
 // プレイヤーから得た数値とコンピュータから得た数値を比べる
 // SWITCH
@@ -195,7 +195,7 @@ function showEachHand(playerChoice, computerChoice) {
   console.log(`あなた → 「${playerHand}」 コンピュータ → 「${computerHand}」`);
 }
 
-function judgeRoundWinner(playerChoice, computerChoice) {
+function showRoundWinner(playerChoice, computerChoice) {
     switch (playerChoice + computerChoice) {
       case 1:
         if (playerChoice === 0) {
