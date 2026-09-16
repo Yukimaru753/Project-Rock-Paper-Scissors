@@ -37,7 +37,7 @@
 // Return
 // ０～２のランダムな数字 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
-// 勝敗を判定する関数 judgeWinner
+// じゃんけんの勝敗を判定する関数 judgeRoundWinner
 
 // プレイヤーから得た数値とコンピュータから得た数値を比べる
 // IF
@@ -120,40 +120,7 @@ function getPlayerChoice() {
     }
 }
 
-// 勝敗を判定する関数 judgeWinner
-
-// プレイヤーから得た数値とコンピュータから得た数値を比べる
-// IF
-// 数値が等しい：あいこの表示、もう一度じゃんけんをする
-// ELSE
-// SWITCH
-// 両者の数値の合計でケースを分ける
-// CASE 1：
-// IF
-// プレイヤーが０を選択している：playerScoreを１増加させる
-// プレイヤーが０を選択していない：computerScoreを１増加させる
-// IFEND
-// CASE 2：
-// IF
-// プレイヤーが２を選択している：playerScoreを１増加させる
-// プレイヤーが２を選択していない：computerScoreを１増加させる
-// IFEND
-// CASE 3：
-// IF
-// プレイヤーが１を選択している：playerScoreを１増加させる
-// プレイヤーが１を選択していない：computerScoreを１増加させる
-// IFEND
-// DEFAULT：エラー表記
-// IFEND
-
-// Parameters
-// プレイヤーから得た数値 
-// コンピュータから得た数値
-
-// Return
-// なし
-
-function judgeWinner(playerChoice, computerChoice) {
+function judgeRoundWinner(playerChoice, computerChoice) {
     if(playerChoice === computerChoice) {
         console.log("あいこです");
     } else {
@@ -191,7 +158,27 @@ function judgeWinner(playerChoice, computerChoice) {
     }
 }
 
-//動作確認
-playerChoice = 1;
-computerChoice = 0;
-judgeWinner(playerChoice, computerChoice);
+// ゲーム全体の勝敗を返す関数 gameWinner
+
+// 5ラウンド終了後に行う
+// 三項演算子でPlayerScoreとcomputerScoreを比べる
+// 勝者の名前を返す
+
+// INPUT
+// 文字列 winnerName
+
+// Parameters
+// playerScore
+// computerScore
+
+// Return
+// 勝者の名前の文字列
+function gameWinner(playerScore, computerScore) {
+    let winnerName = playerScore > computerScore ? "あなた" : "コンピュータ";
+    return winnerName;
+}
+
+// 動作確認
+playerScore =  4;
+computerScore = 5;
+console.log(gameWinner(playerScore, computerScore));
