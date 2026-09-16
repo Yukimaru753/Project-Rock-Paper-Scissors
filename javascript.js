@@ -7,6 +7,7 @@
 // コンピュータの勝利数を記録する数字：computerScore
 // プレイヤーの選択した手を保存する数字：playerChoice
 // コンピュータの選択した手を保存する数字：computerChoice
+// あいこかどうかを判別するブール：drawCheck
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 
@@ -77,9 +78,6 @@
 // じゃんけんの勝敗を判定する関数 judgeRoundWinner
 
 // プレイヤーから得た数値とコンピュータから得た数値を比べる
-// IF
-// 数値が等しい：あいこの表示、もう一度じゃんけんをする
-// ELSE
 // SWITCH
 // 両者の数値の合計でケースを分ける
 // CASE 1：
@@ -98,7 +96,6 @@
 // プレイヤーが１を選択していない：computerScoreを１増加させる
 // IFEND
 // DEFAULT：エラー表記
-// IFEND
 
 // Parameters
 // プレイヤーから得た数値
@@ -141,6 +138,7 @@ let playerScore = 0;
 let computerScore = 0;
 let playerChoice = 0;
 let computerChoice = 0;
+let drawCheck = true;
 
 function getComputerChoice(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -198,9 +196,6 @@ function showEachHand(playerChoice, computerChoice) {
 }
 
 function judgeRoundWinner(playerChoice, computerChoice) {
-  if (playerChoice === computerChoice) {
-    console.log("あいこです");
-  } else {
     switch (playerChoice + computerChoice) {
       case 1:
         if (playerChoice === 0) {
@@ -232,7 +227,6 @@ function judgeRoundWinner(playerChoice, computerChoice) {
       default:
         console.log("エラー");
     }
-  }
 }
 
 function getGameWinner(playerScore, computerScore) {
@@ -240,15 +234,26 @@ function getGameWinner(playerScore, computerScore) {
   return winnerName;
 }
 
-/*
 console.log("じゃんけんを開始します。");
 
 while (round < 5) {
-    console.log(`ラウンド${round + 1}`);
-    computerChoice = getComputerChoice(0, 2);
-    console.log("最初はグー、じゃんけん...");
-    playerChoice = getPlayerChoice();
+  console.log(`ラウンド${round + 1}`);
+  console.log("最初はグー、じゃんけん...");
+  battleText = "ぽんっ！"
+  //あいこならtrueで繰り返す。あいこでないなら勝敗判定へ
+  while (drawCheck) {
+    computerChoice = getComputerChoice(0, 2); //コンピュータの手を選択
+    playerChoice = getPlayerChoice(); //プレイヤーの手を選択
+    console.log(battleText);
+    showEachHand(playerChoice, computerChoice); //プレイヤーとコンピュータの手を表示
+    if (playerChoice === computerChoice) {
+        battleText = "しょっ！"
+    console.log("あいこで...");
+  } else {
+    break;
+  }
 
-    round++;
+
+
+  round++;
 }
-*/
