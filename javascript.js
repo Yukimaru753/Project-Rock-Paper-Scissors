@@ -1,8 +1,7 @@
 // コンピュータとじゃんけんをするプログラム
-// 1ゲーム5ラウンドで最後に勝敗を発表する
+// 1人のプレイヤーが5点に達したらゲームの勝者を発表
 
 // INPUT
-// ラウンドを記録する数字：count
 // プレイヤーの勝利数を記録する数字：playerScore
 // コンピュータの勝利数を記録する数字：computerScore
 // プレイヤーの選択した手を保存する数字：playerChoice
@@ -25,7 +24,7 @@
 
 // プレイヤーが出す手を入力する関数 getPlayerChoice
 
-// プロンプトでrock, scissors, paperのうち一つを入力
+// ボタンを押してrock, scissors, paperのうち一つを選択
 // SWITCH：入力に応じて返り値を与える
 // グー：０
 // チョキ：１
@@ -135,23 +134,18 @@
 // 勝者の名前の文字列
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
-
-let round = 0; //ラウンド数を記録する
 let playerScore = 0;
 let computerScore = 0;
 let playerChoice = 0;
 let computerChoice = 0;
+const button = document.querySelector("button");
 
 function getComputerChoice(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function getPlayerChoice() {
-  let playerInput = prompt(
-    "あなたの手を入力してください\n rock, scissors, paper",
-  );
-
-  switch (playerInput.toLowerCase()) {
+function getPlayerChoice(id) {
+  switch (id) {
     case "rock":
       console.log("グーを選択しました");
       return 0;
@@ -242,9 +236,14 @@ function getGameWinner(playerScore, computerScore) {
   return winnerName;
 }
 
+//ボタンを押したら、プレイヤーの手が保存される
+button.addEventListener("click", (e) => {
+  playerChoice = getPlayerChoice(e.target.id);
+});
+
 console.log("じゃんけんを開始します。");
 
-while (round < 5) {
+while (playerScore === 5 || computerScore === 5) {
   let battleText = "ぽんっ！"; //じゃんけんの掛け声、あいこになると変化する
   let drawCheck = true; //あいこならtrue,あいこじゃないならfalse
   console.log(`ラウンド${round + 1}`);
@@ -267,7 +266,6 @@ while (round < 5) {
   console.log(
     `現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`,
   );
-  round++;
 }
 
 console.log("結果発表！");
