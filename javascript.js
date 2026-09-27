@@ -6,7 +6,14 @@
 // コンピュータの勝利数を記録する数字：computerScore
 // プレイヤーの選択した手を保存する数字：playerChoice
 // コンピュータの選択した手を保存する数字：computerChoice
-// あいこかどうかを判別するブール：drawCheck
+
+// DOM
+// ゲームの結果を表示するsection要素：sec
+// じゃんけんのボタン一覧：buttons
+// 現在のスコアを表示するdiv要素：result
+// ラウンドの結果を表示するdiv要素：matchResult
+// 次のゲームを開始するボタン：resetButton
+// プレイヤーとコンピュータの手を表示するdiv要素：battleText
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 
@@ -24,7 +31,7 @@
 
 // プレイヤーが出す手を入力する関数 getPlayerChoice
 
-// ボタンを押してrock, scissors, paperのうち一つを選択
+// 押されたボタンのidで判別する
 // SWITCH：入力に応じて返り値を与える
 // グー：０
 // チョキ：１
@@ -32,14 +39,14 @@
 // DEFAULT
 // 無効な入力と表示する
 
-// input
-// プレイヤーの入力した文字列 playerInput
-
-// Parameters
+// INPUT
 // なし
 
+// Parameters
+// 押されたボタンのid
+
 // Return
-// ０～２のランダムな数字
+// 押されたボタンに対応する０～２の数字
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 
@@ -69,11 +76,6 @@
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 
-// あいこかを判別して、あいこならもう一度じゃんけんを行う
-// あいこでないなら勝敗判定にうつる
-
-// ーーーーーーーーーーーーーーーーーーーーーーーーーー
-
 // スコアを更新し、じゃんけんの勝者を返す関数 getRoundWinner
 
 // プレイヤーから得た数値とコンピュータから得た数値を比べる
@@ -96,44 +98,30 @@
 // IFEND
 // DEFAULT：エラー表記
 
-// INPUT
-// 勝者の名前の文字列
-
 // Parameters
-// プレイヤーから得た数値
-// コンピュータから得た数値
+// プレイヤーが選択した手：playerChoice
+// コンピュータが選択した手：computerChoice
 
 // Return
-// なし
-
-// ーーーーーーーーーーーーーーーーーーーーーーーーーー
-
-// ラウンドを記録する
-
-// WHILE
-// ラウンド終了時にcountを1増加させる
-// round < 5まで続ける
-// WHILEEND
+// ラウンドの勝者の名前
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
 
 // ゲーム全体の勝者を返す関数 getGameWinner
 
-// 5ラウンド終了後に行う
+// どちらかが5点に達したときに行う
 // 三項演算子でPlayerScoreとcomputerScoreを比べる
 // 勝者の名前を返す
 
-// INPUT
-// 文字列 winnerName
-
 // Parameters
-// playerScore
-// computerScore
+// プレイヤーのスコア：playerScore
+// コンピュータのスコア：computerScore
 
 // Return
-// 勝者の名前の文字列
+// ゲームの勝者の名前
 
 // ーーーーーーーーーーーーーーーーーーーーーーーーーー
+
 let playerScore = 0;
 let computerScore = 0;
 let playerChoice = 0;
@@ -271,7 +259,7 @@ buttons.forEach((button) =>
       if (playerScore === 5 || computerScore === 5) {
         result.remove();
         battleText.remove();
-        buttons.forEach((button) => button.disabled = true);
+        buttons.forEach((button) => (button.disabled = true));
         matchResult.textContent = `${playerScore} 対 ${computerScore} で 勝者 → 「${getGameWinner(playerScore, computerScore)}」`;
         sec.appendChild(resetButton);
       } else {
@@ -286,11 +274,12 @@ buttons.forEach((button) =>
 
 // リセットするとすべての値がリセットされ、新たなゲームが始まる
 resetButton.addEventListener("click", () => {
-  buttons.forEach((button) => button.disabled = false);
+  buttons.forEach((button) => (button.disabled = false));
   playerScore = 0;
   computerScore = 0;
   playerChoice = 0;
   computerChoice = 0;
   matchResult.remove();
   resetButton.remove();
+  result.textContent = `現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`;
 });
