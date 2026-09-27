@@ -138,7 +138,20 @@ let playerScore = 0;
 let computerScore = 0;
 let playerChoice = 0;
 let computerChoice = 0;
-const button = document.querySelector("button");
+
+const sec = document.querySelector("section");
+
+const buttons = document.querySelectorAll("button");
+
+const result = document.createElement("div");
+result.textContent = `現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`;
+
+const matchResult = document.createElement("div");
+
+const resetButton = document.createElement("button");
+resetButton.textContent = "Next Game";
+
+const battleText = document.createElement("div");
 
 function getComputerChoice(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -187,7 +200,8 @@ function showEachHand(playerChoice, computerChoice) {
       computerHand = "パー";
       break;
   }
-  console.log(`あなた → 「${playerHand}」 コンピュータ → 「${computerHand}」`);
+  battleText.textContent = `あなた → 「${playerHand}」 コンピュータ → 「${computerHand}」`;
+  sec.appendChild(battleText);
 }
 
 function getRoundWinner(playerChoice, computerChoice) {
@@ -236,39 +250,47 @@ function getGameWinner(playerScore, computerScore) {
   return winnerName;
 }
 
-//ボタンを押したら、プレイヤーの手が保存される
-button.addEventListener("click", (e) => {
-  playerChoice = getPlayerChoice(e.target.id);
-});
-
-console.log("じゃんけんを開始します。");
-
-while (playerScore === 5 || computerScore === 5) {
-  let battleText = "ぽんっ！"; //じゃんけんの掛け声、あいこになると変化する
-  let drawCheck = true; //あいこならtrue,あいこじゃないならfalse
-  console.log(`ラウンド${round + 1}`);
-  console.log("最初はグー、じゃんけん...");
-  //あいこならtrueで繰り返す。あいこでないなら勝敗判定へ
-  while (drawCheck) {
-    computerChoice = getComputerChoice(0, 2); //コンピュータの手を選択
-    playerChoice = getPlayerChoice(); //プレイヤーの手を選択
-    console.log(battleText);
-    showEachHand(playerChoice, computerChoice); //プレイヤーとコンピュータの手を表示
+//ボタンを押したら、ラウンドが始まる
+buttons.forEach((button) =>
+  button.addEventListener("click", (e) => {
+    //プレイヤーの手を保存
+    playerChoice = getPlayerChoice(e.target.id);
+    // コンピュータの手を保存
+    computerChoice = getComputerChoice(0, 2);
+    //プレイヤーとコンピュータの手を表示
+    showEachHand(playerChoice, computerChoice);
+    // あいこかを判定
     if (playerChoice === computerChoice) {
-      battleText = "しょっ！";
-      console.log("あいこで...");
+      matchResult.textContent = "あいこです。";
+      sec.appendChild(matchResult);
+      sec.appendChild(result);
     } else {
-      drawCheck = false;
+      //じゃんけんの結果を入力、スコアを更新
+      matchResult.textContent = `「${getRoundWinner(playerChoice, computerChoice)}」の勝利！`;
+      // どちらかが先に五点になった場合、勝者を発表
+      if (playerScore === 5 || computerScore === 5) {
+        result.remove();
+        battleText.remove();
+        buttons.forEach((button) => button.disabled = true);
+        matchResult.textContent = `${playerScore} 対 ${computerScore} で 勝者 → 「${getGameWinner(playerScore, computerScore)}」`;
+        sec.appendChild(resetButton);
+      } else {
+        // 結果を出力
+        result.textContent = `現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`;
+        sec.appendChild(matchResult);
+        sec.appendChild(result);
+      }
     }
-  }
-
-  console.log(`「${getRoundWinner(playerChoice, computerChoice)}」の勝利！`); //じゃんけんの勝者を表示し、スコアを更新
-  console.log(
-    `現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`,
-  );
-}
-
-console.log("結果発表！");
-console.log(
-  `${playerScore} 対 ${computerScore} で 勝者 → 「${getGameWinner(playerScore, computerScore)}」`,
+  }),
 );
+
+// リセットするとすべての値がリセットされ、新たなゲームが始まる
+resetButton.addEventListener("click", () => {
+  buttons.forEach((button) => button.disabled = false);
+  playerScore = 0;
+  computerScore = 0;
+  playerChoice = 0;
+  computerChoice = 0;
+  matchResult.remove();
+  resetButton.remove();
+});
