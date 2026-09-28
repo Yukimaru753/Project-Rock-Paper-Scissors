@@ -176,14 +176,19 @@ function showEachHand(playerChoice, computerChoice) {
   let computerHand;
   const you = document.createElement("span");
   you.textContent = "あなた：";
+  you.classList.add("showHand");
   const playerSpan = document.createElement("span");
   playerSpan.classList.add("playerHand");
+  playerSpan.classList.add("showHand");
   const vs = document.createElement("p");
   vs.classList.add("vs");
+  vs.classList.add("showHand");
   vs.textContent = "vs";
   const computer = document.createElement("span");
-  computer.textContent = "コンピュータ："
+  computer.classList.add("showHand");
+  computer.textContent = "コンピュータ：";
   const computerSpan = document.createElement("span");
+  computerSpan.classList.add("showHand");
   computerSpan.classList.add("computerHand");
 
   battleText.textContent = "";
@@ -210,7 +215,7 @@ function showEachHand(playerChoice, computerChoice) {
       computerHand = "パー";
       break;
   }
-  
+
   playerSpan.textContent = `${playerHand}`;
   computerSpan.textContent = `${computerHand}`;
   switch (playerHand) {
@@ -299,9 +304,24 @@ buttons.forEach((button) =>
     computerChoice = getComputerChoice(0, 2);
     //プレイヤーとコンピュータの手を表示
     showEachHand(playerChoice, computerChoice);
+
+    result.textContent = "";
+
+    const resultTop = document.createElement("p");
+    resultTop.classList.add("inResult");
+    resultTop.textContent = "- 現在のスコア -";
+    const resultMiddle = document.createElement("p");
+    resultMiddle.classList.add("inResult");
+    const resultBottom = document.createElement("p");
+    resultBottom.classList.add("inResult");
+    result.appendChild(resultTop);
+    result.appendChild(resultMiddle);
+    result.appendChild(resultBottom);
     // あいこかを判定
     if (playerChoice === computerChoice) {
       matchResult.textContent = "あいこです。";
+      resultMiddle.textContent = `あなた → ${playerScore}`;
+      resultBottom.textContent = `コンピュータ → ${computerScore}`;
       sec.appendChild(matchResult);
       sec.appendChild(result);
     } else {
@@ -316,7 +336,9 @@ buttons.forEach((button) =>
         sec.appendChild(resetButtonCase);
       } else {
         // 結果を出力
-        result.textContent = `現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`;
+
+        resultMiddle.textContent = `あなた → ${playerScore}`;
+        resultBottom.textContent = `コンピュータ → ${computerScore}`;
         sec.appendChild(matchResult);
         sec.appendChild(result);
       }
