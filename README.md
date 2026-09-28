@@ -3,6 +3,9 @@
 ## 概要
 「The Odin Projectの課題として制作した、ブラウザ上で遊べるじゃんけんゲーム」
 
+## Live Demo 
+[ゲームをプレイする] https://yukimaru753.github.io/Project-Rock-Paper-Scissors/
+
 ## 使用技術
 - HTML
 - JavaScript
