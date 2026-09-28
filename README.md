@@ -6,6 +6,7 @@
 ## 使用技術
 - HTML
 - JavaScript
+- CSS
 
 ## 機能
 - 5点先取
