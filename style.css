@@ -1,3 +1,7 @@
+* {
+  background-color: rgb(216, 216, 197);
+}
+
 .title {
   text-align: center;
   font-size: 44px;
@@ -8,7 +12,7 @@
   display: flex;
   justify-content: center;
   gap: 50px;
-  padding-bottom: 56px;
+  padding-bottom: 32px;
 }
 
 .button {
@@ -20,13 +24,55 @@
 }
 
 #rock {
-    background-color: rgb(131, 211, 204);
+  background-color: rgb(131, 211, 204);
 }
 
 #scissors {
-    background-color: yellow;
+  background-color: yellow;
 }
 
 #paper {
-    background-color: rgb(214, 93, 93);
+  background-color: rgb(214, 93, 93);
+}
+
+.battleText {
+  text-align: center;
+  font-size: 22px;
+  white-space: pre-line;
+  border: 1px dashed black;
+  padding-top: 10px;
+  padding-bottom: 6px;
+}
+
+.vs {
+  margin: 0;
+}
+
+.matchResult {
+  text-align: center;
+  font-size: 22px;
+  padding-top: 10px;
+  padding-bottom: 6px;
+}
+
+.result {
+  text-align: center;
+  font-size: 22px;
+  padding-top: 10px;
+  padding-bottom: 6px;
+}
+
+.resetButtonCase {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.resetButton {
+  width: 100px;
+  height: 26px;
+  font-size: 14px;
+  color: aliceblue;
+  outline: none;
+  background-color: rgb(18, 21, 24)
 }

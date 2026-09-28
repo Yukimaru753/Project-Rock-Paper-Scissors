@@ -138,9 +138,13 @@ result.textContent = `現在のスコア：あなた → ${playerScore} コン�
 const matchResult = document.createElement("div");
 matchResult.classList.add("matchResult");
 
+const resetButtonCase = document.createElement("div");
+resetButtonCase.classList.add("resetButtonCase");
+
 const resetButton = document.createElement("button");
 resetButton.classList.add("resetButton");
 resetButton.textContent = "Next Game";
+resetButtonCase.appendChild(resetButton);
 
 const battleText = document.createElement("div");
 battleText.classList.add("battleText");
@@ -170,6 +174,20 @@ function getPlayerChoice(id) {
 function showEachHand(playerChoice, computerChoice) {
   let playerHand;
   let computerHand;
+  const you = document.createElement("span");
+  you.textContent = "あなた：";
+  const playerSpan = document.createElement("span");
+  playerSpan.classList.add("playerHand");
+  const vs = document.createElement("p");
+  vs.classList.add("vs");
+  vs.textContent = "vs";
+  const computer = document.createElement("span");
+  computer.textContent = "コンピュータ："
+  const computerSpan = document.createElement("span");
+  computerSpan.classList.add("computerHand");
+
+  battleText.textContent = "";
+
   switch (playerChoice) {
     case 0:
       playerHand = "グー";
@@ -192,7 +210,37 @@ function showEachHand(playerChoice, computerChoice) {
       computerHand = "パー";
       break;
   }
-  battleText.textContent = `あなた → 「${playerHand}」 コンピュータ → 「${computerHand}」`;
+  
+  playerSpan.textContent = `${playerHand}`;
+  computerSpan.textContent = `${computerHand}`;
+  switch (playerHand) {
+    case "グー":
+      playerSpan.style.color = "rgb(131, 211, 204)";
+      break;
+    case "チョキ":
+      playerSpan.style.color = "yellow";
+      break;
+    case "パー":
+      playerSpan.style.color = "rgb(214, 93, 93)";
+      break;
+  }
+  switch (computerHand) {
+    case "グー":
+      computerSpan.style.color = "rgb(131, 211, 204)";
+      break;
+    case "チョキ":
+      computerSpan.style.color = "yellow";
+      break;
+    case "パー":
+      computerSpan.style.color = "rgb(214, 93, 93)";
+      break;
+  }
+
+  battleText.appendChild(you);
+  battleText.appendChild(playerSpan);
+  battleText.appendChild(vs);
+  battleText.appendChild(computer);
+  battleText.appendChild(computerSpan);
   sec.appendChild(battleText);
 }
 
@@ -265,7 +313,7 @@ buttons.forEach((button) =>
         battleText.remove();
         buttons.forEach((button) => (button.disabled = true));
         matchResult.textContent = `${playerScore} 対 ${computerScore} で 勝者 → 「${getGameWinner(playerScore, computerScore)}」`;
-        sec.appendChild(resetButton);
+        sec.appendChild(resetButtonCase);
       } else {
         // 結果を出力
         result.textContent = `現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`;
@@ -284,6 +332,6 @@ resetButton.addEventListener("click", () => {
   playerChoice = 0;
   computerChoice = 0;
   matchResult.remove();
-  resetButton.remove();
+  resetButtonCase.remove();
   result.textContent = `現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`;
 });
