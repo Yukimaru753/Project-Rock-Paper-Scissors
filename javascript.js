@@ -176,19 +176,14 @@ function showEachHand(playerChoice, computerChoice) {
   let computerHand;
   const you = document.createElement("span");
   you.textContent = "あなた：";
-  you.classList.add("showHand");
   const playerSpan = document.createElement("span");
   playerSpan.classList.add("playerHand");
-  playerSpan.classList.add("showHand");
   const vs = document.createElement("p");
   vs.classList.add("vs");
-  vs.classList.add("showHand");
   vs.textContent = "vs";
   const computer = document.createElement("span");
-  computer.classList.add("showHand");
   computer.textContent = "コンピュータ：";
   const computerSpan = document.createElement("span");
-  computerSpan.classList.add("showHand");
   computerSpan.classList.add("computerHand");
 
   battleText.textContent = "";
