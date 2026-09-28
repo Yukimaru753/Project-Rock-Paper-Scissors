@@ -132,14 +132,18 @@ const sec = document.querySelector("section");
 const buttons = document.querySelectorAll("button");
 
 const result = document.createElement("div");
+result.classList.add("result");
 result.textContent = `現在のスコア：あなた → ${playerScore} コンピュータ → ${computerScore}`;
 
 const matchResult = document.createElement("div");
+matchResult.classList.add("matchResult");
 
 const resetButton = document.createElement("button");
+resetButton.classList.add("resetButton");
 resetButton.textContent = "Next Game";
 
 const battleText = document.createElement("div");
+battleText.classList.add("battleText");
 
 function getComputerChoice(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;

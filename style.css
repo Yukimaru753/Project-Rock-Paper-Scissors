@@ -1,0 +1,32 @@
+.title {
+  text-align: center;
+  font-size: 44px;
+  padding-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 50px;
+  padding-bottom: 56px;
+}
+
+.button {
+  font-size: 18px;
+  width: 80px;
+  height: 80px;
+  border-radius: 40px;
+  outline: none;
+}
+
+#rock {
+    background-color: rgb(131, 211, 204);
+}
+
+#scissors {
+    background-color: yellow;
+}
+
+#paper {
+    background-color: rgb(214, 93, 93);
+}
