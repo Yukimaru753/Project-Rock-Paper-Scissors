@@ -4,22 +4,21 @@
 「The Odin Projectの課題として制作した、ブラウザ上で遊べるじゃんけんゲーム」
 
 ## 使用技術
--HTML
--CSS
--JavaScript
+- HTML
+- JavaScript
 
 ## 機能
--5点先取
--スコア表示
--リセット
--DOM操作
+- 5点先取
+- スコア表示
+- リセット
+- DOM操作
 
 ## 学んだこと
--DOM manipulation
--Events
--Functions
--Git
--Pseudocode
+- DOM manipulation
+- Events
+- Functions
+- Git
+- Pseudocode
 
 ## 感想
 -自分ですべて考え、作成したので、問題解決の練習としてとても糧になった。
